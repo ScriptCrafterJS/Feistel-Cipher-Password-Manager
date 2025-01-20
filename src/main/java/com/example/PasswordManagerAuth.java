@@ -151,7 +151,9 @@ public class PasswordManagerAuth {
                 while ((line = reader.readLine()) != null) {
                     String[] parts = line.split(",");
                     if (parts.length == 2) {
+
                         String decryptedPassword = FeistelCipher.decrypt(parts[1], getKey(username));
+
                         passwords.put(parts[0], decryptedPassword);
                     }
                 }
