@@ -15,12 +15,8 @@ public class WelcomeController {
     @FXML
     private Button loginButton;
 
-    private PasswordManagerAuth passwordManagerAuth;
-
     @FXML
     private void initialize() {
-        passwordManagerAuth = new PasswordManagerAuth();
-
         // Handle button clicks
         registerButton.setOnAction(event -> handleRegister());
         loginButton.setOnAction(event -> handleLogin());
