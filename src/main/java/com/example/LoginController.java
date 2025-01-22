@@ -38,7 +38,9 @@ public class LoginController {
                 homeController.initialize(passwordManagerAuth, username);
 
                 Stage primaryStage = App.getPrimaryStage();
-                primaryStage.setScene(new Scene(root, 640, 480));
+                Scene scene = new Scene(root, 640, 480);
+                scene.getStylesheets().add(getClass().getResource("css/style.css").toExternalForm());
+                primaryStage.setScene(scene);
             } else {
                 System.out.println("Login failed. Invalid username or password.");
             }

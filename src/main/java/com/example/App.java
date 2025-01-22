@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 public class App extends Application {
 
@@ -18,6 +19,7 @@ public class App extends Application {
         primaryStage = stage;
         scene = new Scene(loadFXML("welcome"), 640, 480);
         stage.setScene(scene);
+        scene.getStylesheets().add(getClass().getResource("css/style.css").toExternalForm());
         stage.setTitle("Welcome");
         stage.show();
     }
