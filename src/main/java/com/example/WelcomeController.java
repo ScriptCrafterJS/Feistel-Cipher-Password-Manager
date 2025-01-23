@@ -42,7 +42,9 @@ public class WelcomeController {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("login.fxml"));
             Parent root = fxmlLoader.load();
             Stage primaryStage = App.getPrimaryStage();
-            primaryStage.setScene(new Scene(root, 640, 480));
+            Scene scene = new Scene(root, 640, 480);
+            scene.getStylesheets().add(getClass().getResource("css/style.css").toExternalForm());
+            primaryStage.setScene(scene);
         } catch (Exception e) {
             e.printStackTrace();
         }
