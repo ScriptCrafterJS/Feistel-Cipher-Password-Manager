@@ -39,20 +39,22 @@ public class RegisterController {
         String username = usernameField.getText();
         String password = passwordField.getText();
         try {
-            passwordManagerAuth.register(username, password);
-            System.out.println("User registered successfully.");
-            // Switch to the home page
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("home.fxml"));
-            Parent root = fxmlLoader.load();
-            HomeController homeController = fxmlLoader.getController();
+            boolean register = passwordManagerAuth.register(username, password);
+            if (register) {
+                System.out.println("User registered successfully.");
+                // Switch to the home page
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("home.fxml"));
+                Parent root = fxmlLoader.load();
+                HomeController homeController = fxmlLoader.getController();
 
-            homeController.initialize(passwordManagerAuth, username);
+                homeController.initialize(passwordManagerAuth, username);
 
-            Stage primaryStage = App.getPrimaryStage();
+                Stage primaryStage = App.getPrimaryStage();
 
-            Scene scene = new Scene(root, 640, 480);
-            scene.getStylesheets().add(getClass().getResource("css/style.css").toExternalForm());
-            primaryStage.setScene(scene);
+                Scene scene = new Scene(root, 640, 480);
+                scene.getStylesheets().add(getClass().getResource("css/style.css").toExternalForm());
+                primaryStage.setScene(scene);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

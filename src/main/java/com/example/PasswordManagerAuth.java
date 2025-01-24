@@ -20,23 +20,24 @@ public class PasswordManagerAuth {
     private Map<String, Map<String, String>> userPasswords = new HashMap<>();
 
     public PasswordManagerAuth() {
-        // this will initialize the directory to store users files (each user will have
+        // this will initialize the directory to store users files(each user will have
         // a file with their data)
         File dir = new File(USER_DATA_DIR);
         if (!dir.exists()) {
             dir.mkdir();
         }
+
     }
 
     // Register a new user
-    public void register(String username, String masterPassword) throws IOException, NoSuchAlgorithmException {
+    public boolean register(String username, String masterPassword) throws IOException, NoSuchAlgorithmException {
         // Check if user already exists
         // users/Alice.data (File.separator = / on Unix, \ on Windows)
         File userFile = new File(USER_DATA_DIR + File.separator + username + ".data");
         if (userFile.exists()) {
             // ! later on this will be a popup
             System.out.println("User already exists.");
-            return;
+            return false;
         }
 
         // ? The reason behind using salt is even if two users have the same password,
@@ -64,8 +65,7 @@ public class PasswordManagerAuth {
             // write the derived key as a UTF string
             dos.writeUTF(derivedKey);
         }
-
-        System.out.println("User registered successfully.");
+        return true;
     }
 
     // Login an existing user
